@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body class="bg-body-tertiary">
+<div th:replace="~{layout :: nav}">
+</div>
+<div class="container mt-3 shadow p-5">
+    <div class="mt-2">
+        <div class="border-end-0 border-start-0 border-top-0 card  rounded-0 w-75" th:each="blog:${blogList}">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div>
+                        <img class="img-fluid rounded-circle overflow-hidden object-fit-cover me-3"
+                             th:src="${blog.avatar}"
+                             style="width: 75px; height: 75px;">
+                    </div>
+                    <div class="flex-grow-1">
+                        <p class="card-title" th:text="${blog.author}"></p>
+                        <a th:href="@{/blog/__${blog.getId()}__/content}"
+                           class="fw-bold text-dark opacity-75 text-decoration-none"><h5
+                                class="card-text m-0 "
+                                th:text="${blog.title}"></h5></a>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

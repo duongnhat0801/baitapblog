@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{layout :: nav}">
+</div>
+<div class="container bg-white shadow rounded p-3 mt-3">
+    <div class="text-end d-flex justify-content-between">
+        <h2 class="m-0">DANH SÁCH BLOG</h2>
+        <a href="/blog/create" class="hover-show-text btn btn-sm btn-outline-primary d-inline-flex text-nowrap align-items-center"><i class="fa-solid fa-plus"></i>
+            <div class="hv-text">Thêm Blog mới</div>
+        </a>
+    </div>
+    <div>
+        <p th:if="${noti}" class="alert alert-success" th:text="${noti}"></p>
+    </div>
+    <table class="table table-bordered table-hover mt-3">
+        <tr>
+            <th style="width: 20px">STT</th>
+            <th>Tiêu đề</th>
+            <th style="width: 200px">Tác giả</th>
+            <th style="width: 105px"></th>
+        </tr>
+        <tr th:each="blog,status:${blogList}">
+            <td class="text-center" th:text="${status.count}"></td>
+            <td><span th:text="${#strings.substring(blog.content, 0, 126)}"></span> ...</td>
+            <td th:text="${blog.author}"></td>
+            <td>
+                <a th:href="@{/blog/__${blog.getId()}__/update}" class="btn btn-sm btn-outline-success">Sửa</a>
+                <a th:href="@{/blog/__${blog.getId()}__/delete}" class="btn btn-sm btn-outline-danger">Xóa</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

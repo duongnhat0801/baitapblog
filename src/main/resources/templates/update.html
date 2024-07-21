@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{layout :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="bg-body-tertiary" >
+<div th:replace="~{layout :: nav}"></div>
+<div class="container">
+
+    <div class="shadow-sm mt-5 p-4">
+        <h2>Xóa BLOG</h2>
+        <form action="/blog/update" method="post" th:object="${blog}" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}"/>
+            <div>
+                <label for="title" class="form-label">Tên Blog</label>
+                <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="author" class="form-label">Tên tác giả</label>
+                    <input type="text" class="form-control" id="author" name="author" th:field="*{author}">
+                </div>
+                <div class="col-6">
+                    <label for="avatar" class="form-label">Avatar</label>
+                    <input type="file" class="form-control" id="avatar" name="avatar" th:field="*{avatar}">
+                </div>
+            </div>
+            <div>
+                <label for="content" class="form-label">Nội dung</label>
+                <textarea id="content" name="content" class="form-control" th:field="*{content}"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end mt-2">
+                <a href="/blog/list" class="btn btn-sm btn-secondary me-2">Quay lại</a>
+                <button class="btn btn-sm btn-primary">Cập nhật</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $('#content').summernote({
+        placeholder: 'Nhập nội dung',
+        tabsize: 2,
+        height: 300
+    });
+</script>
+</body>
+</html>
